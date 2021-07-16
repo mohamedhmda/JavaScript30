@@ -14,12 +14,10 @@
             <div class="hand sec-hand"></div>
         </div>
     </div>
-
     <script>
         const hours = document.querySelector('.hour-hand')
         const mins = document.querySelector('.min-hand')
         const secs = document.querySelector('.sec-hand')
-
         function setDate() {
             const now = new Date();
             const seconds = now.getSeconds();
@@ -34,7 +32,6 @@
             const hrs_movement = (30 * houres) - 90
             hours.style.transform = `rotate(${hrs_movement}deg)`
         }
-
         setInterval(setDate, 1000)
 
     </script>
