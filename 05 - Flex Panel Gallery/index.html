@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Panels 💪</title>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="text-align: center;">Clickable Panels</h1>
+    <div class="panels">
+        <div class="panel click panel1">
+            <p>Hey</p>
+            <p>Let's</p>
+            <p>Dance</p>
+        </div>
+        <div class="panel click panel2">
+            <p>Give</p>
+            <p>Take</p>
+            <p>Receive</p>
+        </div>
+        <div class="panel click panel3">
+            <p>Experience</p>
+            <p>It</p>
+            <p>Today</p>
+        </div>
+        <div class="panel click panel4">
+            <p>Give</p>
+            <p>All</p>
+            <p>You can</p>
+        </div>
+        <div class="panel click panel5">
+            <p>Life</p>
+            <p>In</p>
+            <p>Motion</p>
+        </div>
+    </div>
+
+    <h1 style="text-align: center;">Hoverable Panels</h1>
+    <div class="panels">
+        <div class="panel hover panel1">
+            <p>Hey</p>
+            <p>Let's</p>
+            <p>Dance</p>
+        </div>
+        <div class="panel hover panel2">
+            <p>Give</p>
+            <p>Take</p>
+            <p>Receive</p>
+        </div>
+        <div class="panel hover panel3">
+            <p>Experience</p>
+            <p>It</p>
+            <p>Today</p>
+        </div>
+        <div class="panel hover panel4">
+            <p>Give</p>
+            <p>All</p>
+            <p>You can</p>
+        </div>
+        <div class="panel hover panel5">
+            <p>Life</p>
+            <p>In</p>
+            <p>Motion</p>
+        </div>
+    </div>
+
+    <script>
+        const hover_panels = document.querySelectorAll('.hover')
+        function panelhover(){
+            this.classList.add("open", "open-active")
+        }
+        function panelleave(){
+            this.classList.remove("open", "open-active")
+        }
+        hover_panels.forEach(panel => panel.addEventListener('mouseover', panelhover))
+        hover_panels.forEach(panel => panel.addEventListener('mouseleave', panelleave))
+        
+        const click_panels = document.querySelectorAll('.click')
+        function openpanel(){
+            this.classList.toggle("open")
+        }
+        function openactive(e){
+            if(e.propertyName.includes('flex')){
+                this.classList.toggle("open-active")
+            }
+        }
+        click_panels.forEach(panel => panel.addEventListener('click', openpanel))
+        click_panels.forEach(panel => panel.addEventListener('transitionend', openactive))
+
+    </script>
+</body>
+</html>
