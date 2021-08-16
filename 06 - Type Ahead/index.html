@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Type ahead</title>
+</head>
+<body>
+    <form class="search-form">
+        <input type="text" class="search" placeholder="City or State">
+        <ul class="suggested">
+            
+        </ul>
+    </form> 
+
+    <script>
+        const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+        const cities = []
+
+        fetch(endpoint)
+            .then(result => result.json())
+            .then(data => cities.push(...data))
+
+        function search(searchable, cities){
+            return cities.filter(city => {
+                const regex = new RegExp(searchable, 'gi')
+                return city.city.match(regex) || city.state.match(regex)
+            })
+        }
+
+        function handleInput(){
+            const ul = document.querySelector(".suggested")
+            if (this.value.length > 0){
+                const matches = search(this.value, cities)
+                const html = matches.map(city => {
+                    const regex = new RegExp(this.value, 'gi')
+                    const city_name = city.city.replace(regex, `<span class="hl">${this.value}</span>`)
+                    const state_name = city.state.replace(regex, `<span class="hl">${this.value}</span>`)
+                    return `
+                        <li>
+                            ${city_name}, ${state_name}
+                        </li>
+                    `
+                }).join('');
+                ul.innerHTML = html
+            }else{
+                ul.innerHTML = ""
+            }
+            
+        }
+
+        const input = document.querySelector(".search")
+        input.addEventListener('input', handleInput)
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+html{
+    box-sizing: border-box;
+}
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+.search-form{
+    text-align: center;
+    padding: 100px;
+}
+.search{
+    padding: 10px;
+    border-radius: 25px;
+}
+.search:focus{
+    outline: none;
+}
+.suggested{
+    list-style-type: none;
+    padding: 0;
+}
+.suggested>li{
+    padding: 10px;
+    margin-bottom: 5px;
+    border: solid 1px #111;
+}
+.hl{
+    background-color: rgb(162, 216, 15);
+}
